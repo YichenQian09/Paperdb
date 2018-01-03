@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>404</title>
+	<style>
+		*{margin:0; padding:0;}
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0;color:white; }
+		 body { background:#fff; color:#333; font-size:14px; font-family:'微软雅黑', '黑体', sans-serif; }
+		 td,th,caption { font-size:14px; }
+		 h1, h2, h3, h4, h5, h6 { font-weight:normal; }
+		 address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+		 a {  text-decoration:none; }
+		 a:hover { text-decoration:none; }
+		 img { border:none; }
+		 ol,ul,li { list-style:none; }
+		 table { border-collapse:collapse; }
+		 html {overflow-y:auto;} 
+		 button{cursor:pointer;}
+		.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+		 .clearfix { *zoom:1; }
+
+
+		body{
+			background:url(images/background.png);
+		}
+		.container-notfound{
+			width:100%;
+			position:relative;
+			padding:0 auto;
+		}
+		.blank{
+		 	width:100%;
+		 	height:1px;
+		 	overflow:hidden;
+		 }
+		.notfound-main{
+			width:230px;
+			margin:0 auto;
+			margin-top:100px;
+		}
+		.notfound-main>img{
+			width:100%;
+			height:auto;
+		}
+		.notfound-main>h1{
+			width:100%;
+			height:60px;
+			line-height:60px;
+			text-align:center;
+			font-size:18px;
+			color:rgb(65,90,144);
+		}
+		.notfound-main a{
+			display:block;
+			width:210px;
+			margin:0 auto;
+			height:30px;
+			line-height:30px;
+			color:rgb(65,90,144);
+			border:3px solid rgb(65,90,144);
+			border-radius:18px;
+			text-align:center;
+		}
+		.notfound-main a:hover{
+			background:rgb(44,164,191);
+			border:3px solid rgb(44,164,191);
+			color:white;
+		}
+		.footer{
+			font-size:12px;
+			height:18px;
+			color:#999;
+			width:85px;
+			display:none;
+			margin:0 auto;
+			position:absolute;
+			bottom:16px;
+			cursor:pointer;
+		}
+		.footer div{
+			width:85px;
+		}
+		.footer img{
+			display:block;
+			float:left;
+			height:18px;
+			width:auto;
+			margin-right:5px;
+		}
+		.footer a{
+			float:left;
+			width:60px;
+			height:100%;
+			line-height:18px;
+			text-align:center;
+			display:block;
+			margin:0 auto;
+			color:#a1aebe;
+		}
+		@media screen and (min-width:1600px)
+		{
+			.notfound-main{
+				width:322px;
+				margin-top:140px;
+			}
+			.notfound-main>h1{
+				font-size:22px;
+			}
+			.notfound-main a{
+				height:42px;
+				line-height:42px;
+				border-radius:24px;
+				font-size:16px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container-notfound">
+		<div class="blank"></div>
+		<div class="notfound-main">
+			<img src="images/smiling face.png" alt="">
+			<h1>抱歉,你访问的网站不存在</h1>
+			<a href="/">返回首页</a>
+		</div>
+		<div class="footer">
+        	<div class="clearfix">
+        		<img src="images/Contact us2.png" alt="">
+				<a href="mailto:oucguojing@163.com?subject=海洋生态系统服务非市场价值评估网站">联系我们</a>
+        	</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script>
+		$(function(){
+			$(".container-notfound").height($(window).height());
+			$(".footer").css({
+				"display":"block",
+				"left":($(".container-notfound").width()-$(".footer").width())/2
+			});
+		})
+	</script>
+</body>
+</html>

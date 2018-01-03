@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="08634b4803814677a662ba1fa7ee63ca" Name="Diagram1">
+        <EntityTypeShape EntityType="PaperDbModel.Article" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="PaperDbModel.Category" Width="1.5" PointX="1.5" PointY="11.875" />
+        <EntityTypeShape EntityType="PaperDbModel.KeyWordConnection" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="PaperDbModel.KeyWords" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="PaperDbModel.Option" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="PaperDbModel.TypeConnection" Width="1.5" PointX="3" PointY="3.75" />
+        <AssociationConnector Association="PaperDbModel.FK_KeyWordConnection_Article" />
+        <AssociationConnector Association="PaperDbModel.FK_TypeConnection_Article" />
+        <AssociationConnector Association="PaperDbModel.FK_Option_Category" />
+        <AssociationConnector Association="PaperDbModel.FK_KeyWordConnection_KeyWords" />
+        <AssociationConnector Association="PaperDbModel.FK_TypeConnection_Option" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

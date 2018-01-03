@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="manager.master.cs" Inherits="Manager_manager" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <link  href="css/manage.css" rel="stylesheet" />
+     <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+    <title>数据库后台</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="manage">
+    <form id="form1" runat="server">
+        <aside class="man-aside">
+            <h1>数据库后台管理</h1>
+            <hr />
+            <nav class="man-nav">
+                <ul id="man-navigation">
+                  <%--  <li class="second" ><a href="#">成员管理<em></em></a>
+                           <ul>
+                                <li><a href="adminList.aspx?" >管理员列表</a></li>
+                                <li><a href="add.aspx?type=admin" >注册管理员</a></li>
+                          </ul>
+                    </li>
+
+                    <li class="second" ><a href="#">组织管理<em></em></a>
+                           <ul>
+                                <li><a href="groupList.aspx?" >组织列表</a></li>
+                                <li><a href="add.aspx?type=org" >添加组织</a></li>
+                               <li><a href="add.aspx?type=orgNumber" >添加组织成员</a></li>
+                               <li><a href="deletePerson.aspx">删除组织成员</a></li>
+                          </ul>
+                    </li>--%>
+
+                    <li><a href="addArticle.aspx">添加文章</a></li>
+                    <li><a href="manageLabel.aspx">管理关键词</a></li>
+                    <li><a href="articleList.aspx">管理文章</a></li>
+                    <%--<li><a href="manageLabel.aspx">管理标签</a></li>--%>
+                    <li><a href="handbook.aspx">使用说明</a></li>
+
+                    
+                    <li><asp:LinkButton ID="logout" runat ="server" Text="退出登录" OnClick="logout_Click"></asp:LinkButton></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div>
+            <section class="man-container">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </section>
+        </div>
+    </form>
+
+    <!-- 这里就是右边的内容啦啦啦 -->
+
+    <!--<footer class="footer"></footer>-->
+   
+    <script type="text/javascript">
+        $.manNav("#man-navigation");
+    </script>
+</body>
+</html>

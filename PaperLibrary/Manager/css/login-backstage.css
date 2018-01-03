@@ -1,0 +1,150 @@
+*{margin:0; padding:0;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0;color:white; }
+ body { background:#fff; color:#333; font-size:14px; font-family:'微软雅黑', '黑体', sans-serif; }
+ td,th,caption { font-size:14px; }
+ h1, h2, h3, h4, h5, h6 { font-weight:normal; }
+ address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+ a {  text-decoration:none; }
+ a:hover { text-decoration:none; }
+ img { border:none; }
+ ol,ul,li { list-style:none; }
+ table { border-collapse:collapse; }
+ html {overflow-y:auto;} 
+ button{cursor:pointer;}
+.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+ .clearfix { *zoom:1; }
+
+.login-container{
+	width:100%;
+	background:url(../images/background.png);
+}
+ .blank{
+ 	width:100%;
+ 	height:1px;
+ 	overflow:hidden;
+ }
+.login-container .title-chinese{
+	display:block;
+	height:35px;
+	width:auto;
+	margin:0 auto;
+	margin-top:160px;
+	margin-bottom:15px;
+}
+.login-container .title-english{
+	display:block;
+	height:20px;
+	width:auto;
+	margin:0 auto;
+}
+.login-main{
+	width:350px;
+	margin:0 auto;
+	margin-top:45px;
+}
+.username ,.password ,.yanzhengInput{
+	width:346px;
+	height:40px;
+	border:2px solid rgb(65,91,144);
+	border-radius:22px;
+	margin:8px auto;
+}
+.yanzheng{
+	width:100%;
+}
+.yanzhengInput{
+	width:237px;
+	float:left;
+	margin-top:0px;
+}
+.yanzhengImg{
+	overflow:hidden;
+	width:93px;
+	float:right;
+	height:42px;
+	border:1px solid #999;
+}
+.yanzhengImg img{
+	margin:0 auto;
+	display:block;
+	width:auto;
+	height:100%;
+}
+.username img,.password img,.yanzhengInput img{
+	display:block;
+	float:left;
+	margin-left:25px;
+	height:auto;
+	width:24px;
+	margin-top:8px;
+}
+.password img{
+	margin-top:5.5px;
+}
+.yanzhengInput img{
+	margin-top:12px;
+}
+.username input,.password input,.yanzhengInput input{
+	display:block;
+	float:left;
+	height:40px;
+	line-height:40px;
+	margin-left:10px;
+	width:270px;
+	outline:none;
+	border:none;
+	color:rgb(65,91,144);
+	background:transparent;
+	font-size:16px;
+}
+.yanzhengInput input{
+	width:130px;
+}
+
+.choice{
+	width:100%;
+	margin-top:6px;
+}
+.choice input{
+	float:left;
+}
+.choice a,.choice input{
+	display:block;
+	width:170px;
+	height:40px;
+	margin:0 auto;
+	border:2px solid rgb(65,91,144);
+	border-radius:22px;
+	color:rgb(65,91,144);
+	font-size:18px;
+	background:transparent;
+	outline:none;
+	cursor:pointer;
+}
+.choice a{
+	float:right;
+	width:166px;
+	height:36px;
+	line-height:36px;
+	text-align:center;
+}
+.choice a:hover,.choice input:hover{
+	background:rgb(44,164,191);
+	color:white;
+	border:2px solid rgb(44,164,191);
+}
+
+@media screen and (min-width:1600px)
+{
+	.login-container .title-chinese{
+		margin-top:240px;
+	}
+}
+@media screen and (max-width:600px)
+{
+	.login-container {
+		width:600px;
+	}
+}
+
+

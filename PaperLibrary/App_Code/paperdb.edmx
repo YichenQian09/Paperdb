@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PaperDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UpateTime" Type="datetime" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Journal" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KeyWordConnection">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="KeyWordId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KeyWords">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Option">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeConnection">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="OptionId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_KeyWordConnection_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="KeyWordConnection" Type="Self.KeyWordConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="KeyWordConnection">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeyWordConnection_KeyWords">
+          <End Role="KeyWords" Type="Self.KeyWords" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="KeyWordConnection" Type="Self.KeyWordConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KeyWords">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="KeyWordConnection">
+              <PropertyRef Name="KeyWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Option_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Option" Type="Self.Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeConnection_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TypeConnection" Type="Self.TypeConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TypeConnection">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeConnection_Option">
+          <End Role="Option" Type="Self.Option" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TypeConnection" Type="Self.TypeConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TypeConnection">
+              <PropertyRef Name="OptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PaperDbModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KeyWordConnection" EntityType="Self.KeyWordConnection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KeyWords" EntityType="Self.KeyWords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Option" EntityType="Self.Option" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeConnection" EntityType="Self.TypeConnection" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_KeyWordConnection_Article" Association="Self.FK_KeyWordConnection_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="KeyWordConnection" EntitySet="KeyWordConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeyWordConnection_KeyWords" Association="Self.FK_KeyWordConnection_KeyWords">
+            <End Role="KeyWords" EntitySet="KeyWords" />
+            <End Role="KeyWordConnection" EntitySet="KeyWordConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Option_Category" Association="Self.FK_Option_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeConnection_Article" Association="Self.FK_TypeConnection_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="TypeConnection" EntitySet="TypeConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeConnection_Option" Association="Self.FK_TypeConnection_Option">
+            <End Role="Option" EntitySet="Option" />
+            <End Role="TypeConnection" EntitySet="TypeConnection" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PaperDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PaperDbEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PaperDbModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PaperDbModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Article" EntityType="PaperDbModel.Article" />
+          <EntitySet Name="Category" EntityType="PaperDbModel.Category" />
+          <EntitySet Name="KeyWordConnection" EntityType="PaperDbModel.KeyWordConnection" />
+          <EntitySet Name="KeyWords" EntityType="PaperDbModel.KeyWords" />
+          <EntitySet Name="Option" EntityType="PaperDbModel.Option" />
+          <EntitySet Name="TypeConnection" EntityType="PaperDbModel.TypeConnection" />
+          <AssociationSet Name="FK_KeyWordConnection_Article" Association="PaperDbModel.FK_KeyWordConnection_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="KeyWordConnection" EntitySet="KeyWordConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeConnection_Article" Association="PaperDbModel.FK_TypeConnection_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="TypeConnection" EntitySet="TypeConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Option_Category" Association="PaperDbModel.FK_Option_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeyWordConnection_KeyWords" Association="PaperDbModel.FK_KeyWordConnection_KeyWords">
+            <End Role="KeyWords" EntitySet="KeyWords" />
+            <End Role="KeyWordConnection" EntitySet="KeyWordConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeConnection_Option" Association="PaperDbModel.FK_TypeConnection_Option">
+            <End Role="Option" EntitySet="Option" />
+            <End Role="TypeConnection" EntitySet="TypeConnection" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Summary" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Journal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KeyWordConnection" Relationship="PaperDbModel.FK_KeyWordConnection_Article" FromRole="Article" ToRole="KeyWordConnection" />
+          <NavigationProperty Name="TypeConnection" Relationship="PaperDbModel.FK_TypeConnection_Article" FromRole="Article" ToRole="TypeConnection" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Option" Relationship="PaperDbModel.FK_Option_Category" FromRole="Category" ToRole="Option" />
+        </EntityType>
+        <EntityType Name="KeyWordConnection">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="KeyWordId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="PaperDbModel.FK_KeyWordConnection_Article" FromRole="KeyWordConnection" ToRole="Article" />
+          <NavigationProperty Name="KeyWords" Relationship="PaperDbModel.FK_KeyWordConnection_KeyWords" FromRole="KeyWordConnection" ToRole="KeyWords" />
+        </EntityType>
+        <EntityType Name="KeyWords">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KeyWordConnection" Relationship="PaperDbModel.FK_KeyWordConnection_KeyWords" FromRole="KeyWords" ToRole="KeyWordConnection" />
+        </EntityType>
+        <EntityType Name="Option">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="PaperDbModel.FK_Option_Category" FromRole="Option" ToRole="Category" />
+          <NavigationProperty Name="TypeConnection" Relationship="PaperDbModel.FK_TypeConnection_Option" FromRole="Option" ToRole="TypeConnection" />
+        </EntityType>
+        <EntityType Name="TypeConnection">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="OptionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="PaperDbModel.FK_TypeConnection_Article" FromRole="TypeConnection" ToRole="Article" />
+          <NavigationProperty Name="Option" Relationship="PaperDbModel.FK_TypeConnection_Option" FromRole="TypeConnection" ToRole="Option" />
+        </EntityType>
+        <Association Name="FK_KeyWordConnection_Article">
+          <End Type="PaperDbModel.Article" Role="Article" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PaperDbModel.KeyWordConnection" Role="KeyWordConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="KeyWordConnection">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeConnection_Article">
+          <End Type="PaperDbModel.Article" Role="Article" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PaperDbModel.TypeConnection" Role="TypeConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TypeConnection">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Option_Category">
+          <End Type="PaperDbModel.Category" Role="Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PaperDbModel.Option" Role="Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeyWordConnection_KeyWords">
+          <End Type="PaperDbModel.KeyWords" Role="KeyWords" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PaperDbModel.KeyWordConnection" Role="KeyWordConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KeyWords">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="KeyWordConnection">
+              <PropertyRef Name="KeyWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeConnection_Option">
+          <End Type="PaperDbModel.Option" Role="Option" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PaperDbModel.TypeConnection" Role="TypeConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TypeConnection">
+              <PropertyRef Name="OptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PaperDbModelStoreContainer" CdmEntityContainer="PaperDbEntities">
+          <EntitySetMapping Name="Article">
+            <EntityTypeMapping TypeName="PaperDbModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="Journal" ColumnName="Journal" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="UpateTime" ColumnName="UpateTime" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="PaperDbModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KeyWordConnection">
+            <EntityTypeMapping TypeName="PaperDbModel.KeyWordConnection">
+              <MappingFragment StoreEntitySet="KeyWordConnection">
+                <ScalarProperty Name="KeyWordId" ColumnName="KeyWordId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KeyWords">
+            <EntityTypeMapping TypeName="PaperDbModel.KeyWords">
+              <MappingFragment StoreEntitySet="KeyWords">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Option">
+            <EntityTypeMapping TypeName="PaperDbModel.Option">
+              <MappingFragment StoreEntitySet="Option">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeConnection">
+            <EntityTypeMapping TypeName="PaperDbModel.TypeConnection">
+              <MappingFragment StoreEntitySet="TypeConnection">
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
